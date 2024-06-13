@@ -1,0 +1,63 @@
+Benchmark des Modèles Choisis
+Pour choisir les modèles appropriés pour la prédiction de succès et la recommandation d'animes/mangas, il est important de comprendre les raisons pour lesquelles certains modèles ont été sélectionnés par rapport à d'autres. Voici un benchmark expliquant les choix des modèles utilisés.
+
+1. Modèle de Prédiction de Succès
+
+Modèle Utilisé : Random Forest Regressor
+
+Pourquoi Random Forest Regressor ?
+
+Robustesse aux Outliers :
+
+Les forêts aléatoires sont robustes aux valeurs aberrantes. Étant donné que les données peuvent contenir des scores extrêmes ou des anomalies, ce modèle est bien adapté pour traiter ces situations sans dégradation significative des performances.
+Précision :
+
+Les forêts aléatoires combinent plusieurs arbres de décision pour réduire le risque de surapprentissage (overfitting) et augmenter la précision des prédictions. Cela est particulièrement utile dans des ensembles de données complexes comme ceux des animes/mangas.
+Interprétabilité :
+
+Bien que les forêts aléatoires soient des modèles d'ensemble et donc plus complexes que les arbres de décision individuels, elles restent plus interprétables que les modèles comme les réseaux de neurones profonds.
+Efficacité en Temps et Mémoire :
+
+Comparé à des modèles plus complexes comme les réseaux de neurones, les forêts aléatoires sont relativement plus rapides à entraîner et à évaluer, ce qui est crucial pour des environnements avec des ressources limitées.
+Alternatives Considérées :
+
+Linear Regression :
+
+Simple et rapide, mais souvent insuffisante pour capturer la complexité des relations non linéaires dans les données d'animes/mangas.
+Gradient Boosting Machines (GBM) :
+
+Très performant mais peut être plus lent à entraîner et plus complexe à interpréter que les forêts aléatoires.
+Neural Networks :
+
+Potentiellement plus précis mais nécessitent beaucoup plus de données et de puissance de calcul, et sont plus sujets au surapprentissage.
+2. Modèle de Recommandation
+
+Modèle Utilisé : Singular Value Decomposition (SVD)
+
+Pourquoi SVD ?
+
+Performance :
+
+SVD est largement utilisé dans les systèmes de recommandation, notamment dans des compétitions telles que le Netflix Prize, où il a montré d'excellentes performances pour la prédiction des notes utilisateurs.
+Réduction de la Dimensionnalité :
+
+SVD réduit la complexité en réduisant les dimensions de l'espace utilisateur-article, permettant ainsi de capturer les relations latentes entre les utilisateurs et les articles de manière efficace.
+Efficacité en Mémoire et Temps :
+
+SVD est moins gourmand en mémoire et plus rapide à évaluer comparé à des techniques plus complexes comme les réseaux de neurones pour les recommandations.
+Précision :
+
+Les résultats de RMSE et MAE montrent que SVD offre une performance robuste et cohérente dans la prédiction des scores.
+Alternatives Considérées :
+
+Collaborative Filtering Basé sur les k-Nearest Neighbors (kNN) :
+
+Simplicité et interprétabilité, mais souvent moins performant en termes de précision que SVD.
+Matrix Factorization Techniques (comme ALS - Alternating Least Squares) :
+
+Similaire à SVD mais parfois plus complexe à implémenter et ajuster pour des ensembles de données spécifiques.
+Deep Learning Approaches (comme les autoencodeurs) :
+
+Potentiellement plus précis mais nécessite plus de données et de puissance de calcul, et plus difficile à interpréter.
+Conclusion
+Le choix des modèles Random Forest Regressor pour la prédiction de succès et SVD pour la recommandation est justifié par un bon équilibre entre précision, efficacité, robustesse et simplicité. Bien que d'autres modèles puissent offrir des avantages spécifiques, ces deux modèles sont bien adaptés aux caractéristiques des données d'animes/mangas et aux contraintes opérationnelles typiques.
