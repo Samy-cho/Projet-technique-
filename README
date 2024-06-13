@@ -1,1 +1,120 @@
+```txt
 
+```
+# Système de Prédiction de Succès et de Recommandation d'Anime/Manga
+
+Ce projet vise à développer un système capable de prédire le succès d'un anime ou manga et de recommander des anime/manga en fonction des préférences de l'utilisateur.
+
+---
+
+## Installation
+
+Pour exécuter ce projet localement, suivez les étapes ci-dessous :
+
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/votre-utilisateur/votre-repo.git
+   cd votre-repo
+   ```
+
+2. Installez les dépendances nécessaires :
+   ```bash
+   pip install -r requirements.txt
+   npm install -g localtunnel
+   ```
+
+3. Assurez-vous que les fichiers `anime.csv` et `manga.csv` sont placés dans le répertoire principal du projet.
+
+---
+
+## Données
+
+Les datasets utilisés dans ce projet sont `anime.csv` et `manga.csv`. Ces fichiers contiennent des informations détaillées sur divers anime et manga, y compris les titres, les genres, les statuts, les votes, etc.
+
+---
+
+## Prétraitement des Données
+
+Le prétraitement des données comprend les étapes suivantes :
+
+1. Fusion des datasets `anime.csv` et `manga.csv`.
+2. Remplissage des valeurs manquantes pour les colonnes numériques et catégorielles.
+3. Nettoyage des colonnes pour supprimer les valeurs non numériques.
+4. Encodage des colonnes catégorielles à l'aide de `OneHotEncoder`.
+5. Normalisation des caractéristiques numériques à l'aide de `StandardScaler`.
+
+---
+
+## Modèles Utilisés
+
+Deux modèles principaux sont utilisés :
+
+1. **RandomForestRegressor** : Pour prédire le score de succès d'un anime/manga basé sur ses caractéristiques.
+2. **SVD (Singular Value Decomposition)** : Pour recommander des anime/manga similaires basés sur les préférences de l'utilisateur.
+
+---
+
+## Interface Utilisateur
+
+L'interface utilisateur est construite à l'aide de Streamlit. Elle comporte deux onglets principaux :
+
+1. **Prédiction du Succès** : Permet de prédire le score de succès d'un anime/manga donné.
+2. **Recommandation** : Permet à l'utilisateur de sélectionner un anime/manga et de recevoir des recommandations similaires.
+
+---
+
+## Déploiement
+
+Pour déployer l'application localement et la rendre accessible en ligne :
+
+1. Créez un fichier `app.py` avec le code de l'application Streamlit.
+2. Utilisez les commandes suivantes pour démarrer l'application et créer un tunnel avec `localtunnel` :
+
+   ```bash
+   !streamlit run app.py &
+   !lt --port 8501
+   ```
+
+---
+
+## API
+
+Une API RESTful est fournie pour intégrer facilement les fonctionnalités de prédiction et de recommandation dans d'autres applications.
+
+### Endpoints
+
+1. **Prédiction de Succès**
+   - **URL** : `/predict`
+   - **Méthode** : `POST`
+   - **Données** : JSON contenant les caractéristiques de l'anime/manga
+   - **Réponse** : JSON avec le score prédit
+
+2. **Recommandation**
+   - **URL** : `/recommend`
+   - **Méthode** : `POST`
+   - **Données** : JSON avec le titre de l'anime/manga préféré de l'utilisateur
+   - **Réponse** : JSON avec une liste de recommandations
+
+### Exemple de requête
+
+```bash
+curl -X POST http://localhost:5000/predict -H "Content-Type: application/json" -d '{"title": "Naruto", "vote": 2000, "ranked": 10, "popularity": 5, ...}'
+```
+
+```bash
+curl -X POST http://localhost:5000/recommend -H "Content-Type: application/json" -d '{"title": "Naruto"}'
+```
+
+---
+
+Pour utiliser l'application, ouvrez l'URL générée par `localtunnel` dans votre navigateur. Vous pouvez prédire le succès d'un anime/manga et obtenir des recommandations en fonction de vos préférences.
+
+### Remarques
+
+1. Assurez-vous que toutes les dépendances sont installées avant d'exécuter l'application.
+2. Si vous rencontrez des problèmes de mémoire, réduisez la taille de l'échantillon utilisé pour l'entraînement et la prédiction.
+3. Pour toute assistance supplémentaire, veuillez consulter la documentation de Streamlit et Flask.
+
+```
+
+Ce fichier `README.txt` contient toutes les informations nécessaires pour comprendre, installer, exécuter et utiliser le projet de prédiction de succès et de recommandation d'anime/manga. Vous pouvez l'adapter selon vos besoins et ajouter toute information supplémentaire jugée nécessaire.
